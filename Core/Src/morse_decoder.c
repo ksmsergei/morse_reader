@@ -5,6 +5,7 @@
  *      Author: ksm
  */
 
+#include <stddef.h>
 #include "morse_decoder.h"
 
 typedef struct {
@@ -52,7 +53,7 @@ static const MorseCode_t morse_codes[] = {
 };
 
 //Decodes a morse character and return ASCII character
-char decode_morse_char(MorseChar_t* morse_char) {
+char decode_morse_char(const MorseChar_t* morse_char) {
     for (int i = 0; i < sizeof(morse_codes) / sizeof(morse_codes[0]); i++) {
         if (morse_codes[i].morse.bits == morse_char->bits &&
             morse_codes[i].morse.length == morse_char->length) {
@@ -61,6 +62,16 @@ char decode_morse_char(MorseChar_t* morse_char) {
     }
 
     return '\0'; //If no symbol was found
+}
+
+const MorseChar_t* encode_morse_char(char c) {
+	for (int i = 0; i < sizeof(morse_codes) / sizeof(morse_codes[0]); i++) {
+		if (morse_codes[i].letter == c) {
+			return &(morse_codes[i].morse);
+		}
+	}
+
+	return NULL; //If no char was found
 }
 
 //Add dot(0) or dash(1) to current morse character
