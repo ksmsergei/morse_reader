@@ -19,6 +19,6 @@ typedef struct {
 char decode_morse_char(const MorseChar_t* morse_char);
 const MorseChar_t* encode_morse_char(char c);
 
-MorseChar_t* add_unit(MorseChar_t* symbol, bool is_dash);
+void add_unit(MorseChar_t* symbol, bool is_dash);
 
 #endif // MORSE_DECODER_H

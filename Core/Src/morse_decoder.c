@@ -75,7 +75,7 @@ const MorseChar_t* encode_morse_char(char c) {
 }
 
 //Add dot(0) or dash(1) to current morse character
-MorseChar_t* add_unit(MorseChar_t* symbol, bool is_dash) {
+void add_unit(MorseChar_t* symbol, bool is_dash) {
 	symbol->bits <<= 1;
 
 	if (is_dash) {
@@ -86,6 +86,4 @@ MorseChar_t* add_unit(MorseChar_t* symbol, bool is_dash) {
 
 
 	symbol->length++;
-
-	return symbol;
 }
